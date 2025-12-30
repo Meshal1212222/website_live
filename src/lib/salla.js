@@ -3,46 +3,36 @@
  * للتعامل مع جميع طلبات API سلة
  */
 
-const SALLA_API_BASE = 'https://api.salla.dev/admin/v2';
+import { saveStoreTokens as fbSaveTokens, getStoreTokens as fbGetTokens, getAllStores as fbGetAllStores } from './firebase';
 
-// تخزين مؤقت للـ tokens (في الإنتاج استخدم قاعدة بيانات)
-let tokensStore = new Map();
+const SALLA_API_BASE = 'https://api.salla.dev/admin/v2';
 
 /**
  * حفظ tokens المتجر
  */
-export function saveStoreTokens(merchantId, tokens) {
-  tokensStore.set(merchantId, {
-    access_token: tokens.access_token,
-    refresh_token: tokens.refresh_token,
-    expires_at: Date.now() + (tokens.expires_in * 1000),
-    store_info: tokens.store_info || null
-  });
+export async function saveStoreTokens(merchantId, tokens) {
+  await fbSaveTokens(merchantId, tokens);
 }
 
 /**
  * جلب tokens المتجر
  */
-export function getStoreTokens(merchantId) {
-  return tokensStore.get(merchantId);
+export async function getStoreTokens(merchantId) {
+  return await fbGetTokens(merchantId);
 }
 
 /**
  * جلب كل المتاجر المسجلة
  */
-export function getAllStores() {
-  const stores = [];
-  tokensStore.forEach((value, key) => {
-    stores.push({ merchantId: key, ...value });
-  });
-  return stores;
+export async function getAllStores() {
+  return await fbGetAllStores();
 }
 
 /**
  * تجديد Access Token
  */
 export async function refreshAccessToken(merchantId) {
-  const stored = tokensStore.get(merchantId);
+  const stored = await getStoreTokens(merchantId);
   if (!stored || !stored.refresh_token) {
     throw new Error('No refresh token available');
   }
@@ -65,7 +55,7 @@ export async function refreshAccessToken(merchantId) {
   }
 
   const tokens = await response.json();
-  saveStoreTokens(merchantId, tokens);
+  await saveStoreTokens(merchantId, tokens);
   return tokens;
 }
 
@@ -73,7 +63,7 @@ export async function refreshAccessToken(merchantId) {
  * إرسال طلب لـ Salla API
  */
 export async function sallaRequest(merchantId, endpoint, options = {}) {
-  let stored = tokensStore.get(merchantId);
+  let stored = await getStoreTokens(merchantId);
 
   if (!stored) {
     throw new Error('Store not authorized');
@@ -82,7 +72,7 @@ export async function sallaRequest(merchantId, endpoint, options = {}) {
   // تجديد التوكن إذا انتهت صلاحيته
   if (Date.now() >= stored.expires_at) {
     await refreshAccessToken(merchantId);
-    stored = tokensStore.get(merchantId);
+    stored = await getStoreTokens(merchantId);
   }
 
   const response = await fetch(`${SALLA_API_BASE}${endpoint}`, {
