@@ -14,7 +14,7 @@ export async function GET(request) {
     // إذا لم يحدد التاجر، نجلب من أول متجر مسجل
     let targetMerchant = merchantId;
     if (!targetMerchant) {
-      const stores = getAllStores();
+      const stores = await getAllStores();
       if (stores.length === 0) {
         return NextResponse.json(
           { error: 'No stores connected. Please install the app from Salla.' },

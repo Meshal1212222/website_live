@@ -13,7 +13,7 @@ export async function POST(request) {
     // إذا لم يحدد التاجر، نستخدم أول متجر مسجل
     let targetMerchant = merchant_id;
     if (!targetMerchant) {
-      const stores = getAllStores();
+      const stores = await getAllStores();
       if (stores.length === 0) {
         return NextResponse.json(
           { error: 'No stores connected' },
@@ -90,7 +90,7 @@ export async function GET(request) {
     // إذا لم يحدد التاجر، نستخدم أول متجر مسجل
     let targetMerchant = merchantId;
     if (!targetMerchant) {
-      const stores = getAllStores();
+      const stores = await getAllStores();
       if (stores.length === 0) {
         return NextResponse.json(
           { error: 'No stores connected' },
