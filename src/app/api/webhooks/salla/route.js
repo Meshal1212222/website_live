@@ -26,13 +26,15 @@ export async function POST(request) {
     const body = JSON.parse(rawBody);
     const event = body.event;
     const data = body.data;
+    const merchant = body.merchant;
 
     console.log('📥 Salla Webhook:', event);
+    console.log('📦 Full payload:', JSON.stringify(body, null, 2));
 
     switch (event) {
       // تفويض التطبيق - النمط السهل
       case 'app.store.authorize':
-        await handleStoreAuthorize(data);
+        await handleStoreAuthorize(body);
         break;
 
       // تحديث المنتج
@@ -84,19 +86,43 @@ export async function POST(request) {
 /**
  * معالجة تفويض المتجر (النمط السهل)
  */
-async function handleStoreAuthorize(data) {
-  const { access_token, refresh_token, expires_in, merchant } = data;
+async function handleStoreAuthorize(body) {
+  // محاولة إيجاد معرف التاجر من مواقع مختلفة في الـ payload
+  const merchantId = body.merchant?.id ||
+                     body.merchant ||
+                     body.data?.merchant?.id ||
+                     body.data?.merchant ||
+                     body.data?.store_id ||
+                     body.data?.merchant_id ||
+                     body.store_id ||
+                     body.merchant_id;
 
-  console.log('🔐 Store authorized:', merchant);
+  // التوكنات قد تكون في data أو في root
+  const access_token = body.data?.access_token || body.access_token;
+  const refresh_token = body.data?.refresh_token || body.refresh_token;
+  const expires_in = body.data?.expires_in || body.expires_in || 14400;
+
+  console.log('🔐 Store authorized:', merchantId);
+  console.log('🔑 Access token exists:', !!access_token);
+
+  if (!merchantId) {
+    console.error('❌ Could not find merchant ID in payload');
+    return;
+  }
+
+  if (!access_token) {
+    console.error('❌ Could not find access token in payload');
+    return;
+  }
 
   // حفظ التوكنات
-  await saveStoreTokens(merchant.toString(), {
+  await saveStoreTokens(merchantId.toString(), {
     access_token,
     refresh_token,
     expires_in,
   });
 
-  console.log('✅ Tokens saved for merchant:', merchant);
+  console.log('✅ Tokens saved for merchant:', merchantId);
 }
 
 /**
