@@ -30,34 +30,52 @@ export default function Home() {
       gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     },
     {
-      icon: '🌐',
-      title: 'كل المنصات مدعومة',
-      description: 'WordPress، Webflow، Wix، Shopify، أو أي موقع مخصص',
-      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
-    },
-    {
       icon: '🛒',
-      title: 'تكامل متجرك',
-      description: 'سلة التسوق والمنتجات والطلبات تظهر في موقعك',
+      title: 'سلة تسوق متكاملة',
+      description: 'المنتجات والأسعار والمخزون متزامنة تلقائياً',
       gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
     },
     {
-      icon: '⚡',
-      title: 'سرعة خارقة',
-      description: 'أداء عالي وتحميل فوري لتجربة مستخدم مثالية',
-      gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
-    },
-    {
-      icon: '🎨',
-      title: 'حرية التصميم',
-      description: 'صمم موقعك بالشكل الذي تريده دون قيود',
-      gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+      icon: '🎫',
+      title: 'كوبونات وعروض',
+      description: 'كوبونات الخصم والعروض تعمل في موقعك مباشرة',
+      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
     },
     {
       icon: '📊',
       title: 'تحليلات متقدمة',
-      description: 'تتبع زوارك ومبيعاتك من لوحة تحكم واحدة',
+      description: 'تتبع الزوار والمبيعات والتحويلات بالتفصيل',
+      gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+    },
+    {
+      icon: '🔍',
+      title: 'تحسين السيو',
+      description: 'Meta tags وSchema markup تلقائي لكل منتج',
+      gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+    },
+    {
+      icon: '💰',
+      title: 'التسويق بالعمولة',
+      description: 'روابط المسوقين تعمل وتُتبع في موقعك',
       gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
+    },
+    {
+      icon: '🌐',
+      title: 'كل المنصات',
+      description: 'WordPress، Webflow، Wix، أو أي موقع مخصص',
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    },
+    {
+      icon: '⚡',
+      title: 'تزامن فوري',
+      description: 'أي تغيير في سلة يظهر في موقعك خلال ثواني',
+      gradient: 'linear-gradient(135deg, #ff6b6b 0%, #feca57 100%)'
+    },
+    {
+      icon: '🔔',
+      title: 'إشعارات ذكية',
+      description: 'تنبيهات الطلبات والمخزون في الوقت الفعلي',
+      gradient: 'linear-gradient(135deg, #5f27cd 0%, #341f97 100%)'
     }
   ];
 
@@ -318,8 +336,8 @@ export default function Home() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '25px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '20px'
           }}>
             {features.map((feature, index) => (
               <div
