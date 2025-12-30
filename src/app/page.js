@@ -1,10 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,233 +25,348 @@ export default function Home() {
   const features = [
     {
       icon: '🔗',
-      title: 'ربط سهل',
-      description: 'اربط موقعك الخارجي مع سلة بخطوات بسيطة'
+      title: 'ربط سهل وسريع',
+      description: 'اربط موقعك الخارجي مع سلة بضغطة زر واحدة',
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     },
     {
       icon: '🌐',
-      title: 'دعم جميع المنصات',
-      description: 'WordPress، Webflow، Wix، أو أي موقع مخصص'
+      title: 'كل المنصات مدعومة',
+      description: 'WordPress، Webflow، Wix، Shopify، أو أي موقع مخصص',
+      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
     },
     {
       icon: '🛒',
-      title: 'تكامل كامل',
-      description: 'سلة التسوق والمنتجات والطلبات في موقعك'
+      title: 'تكامل متجرك',
+      description: 'سلة التسوق والمنتجات والطلبات تظهر في موقعك',
+      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
     },
     {
       icon: '⚡',
-      title: 'أداء عالي',
-      description: 'سرعة تحميل فائقة وتجربة مستخدم سلسة'
+      title: 'سرعة خارقة',
+      description: 'أداء عالي وتحميل فوري لتجربة مستخدم مثالية',
+      gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+    },
+    {
+      icon: '🎨',
+      title: 'حرية التصميم',
+      description: 'صمم موقعك بالشكل الذي تريده دون قيود',
+      gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+    },
+    {
+      icon: '📊',
+      title: 'تحليلات متقدمة',
+      description: 'تتبع زوارك ومبيعاتك من لوحة تحكم واحدة',
+      gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
     }
   ];
 
+  const steps = [
+    { number: '01', title: 'صمم موقعك', description: 'استخدم أي منصة تفضلها لبناء موقعك' },
+    { number: '02', title: 'اربط مع سلة', description: 'أضف كود الربط البسيط لموقعك' },
+    { number: '03', title: 'ابدأ البيع', description: 'استقبل الطلبات مباشرة في متجرك' }
+  ];
+
   return (
-    <div style={{ minHeight: '100vh' }}>
+    <div style={{ minHeight: '100vh', background: '#0a0a0a', color: 'white', overflow: 'hidden' }}>
+
+      {/* Animated Background */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: `
+          radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 20% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.1) 0%, transparent 50%)
+        `,
+        pointerEvents: 'none',
+        zIndex: 0
+      }} />
+
+      {/* Floating Orbs */}
+      <div style={{
+        position: 'fixed',
+        top: '10%',
+        left: '10%',
+        width: '300px',
+        height: '300px',
+        background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3))',
+        borderRadius: '50%',
+        filter: 'blur(80px)',
+        animation: 'float 8s ease-in-out infinite',
+        pointerEvents: 'none'
+      }} />
+      <div style={{
+        position: 'fixed',
+        bottom: '20%',
+        right: '10%',
+        width: '250px',
+        height: '250px',
+        background: 'linear-gradient(135deg, rgba(240, 147, 251, 0.3), rgba(245, 87, 108, 0.3))',
+        borderRadius: '50%',
+        filter: 'blur(80px)',
+        animation: 'float 10s ease-in-out infinite reverse',
+        pointerEvents: 'none'
+      }} />
+
       {/* Hero Section */}
       <section style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '40px 20px',
         position: 'relative',
-        overflow: 'hidden'
+        zIndex: 1
       }}>
-        {/* Background Pattern */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-          opacity: 0.5
-        }} />
+        <div style={{ textAlign: 'center', maxWidth: '900px' }}>
 
-        <div style={{
-          textAlign: 'center',
-          color: 'white',
-          maxWidth: '800px',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          {/* Logo */}
+          {/* Badge */}
           <div style={{
-            fontSize: '4rem',
-            marginBottom: '20px',
-            animation: 'fadeIn 0.6s ease-out'
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            background: 'rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            padding: '8px 20px',
+            borderRadius: '50px',
+            marginBottom: '30px',
+            backdropFilter: 'blur(10px)',
+            animation: 'fadeInDown 0.8s ease-out'
           }}>
-            🚀
+            <span style={{
+              width: '8px',
+              height: '8px',
+              background: '#4ade80',
+              borderRadius: '50%',
+              animation: 'pulse 2s infinite'
+            }} />
+            <span style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)' }}>قريباً - سجل الآن للوصول المبكر</span>
           </div>
 
+          {/* Main Title */}
           <h1 style={{
-            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-            marginBottom: '20px',
-            fontWeight: '700',
-            animation: 'fadeIn 0.6s ease-out 0.1s backwards'
+            fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+            fontWeight: '800',
+            lineHeight: '1.1',
+            marginBottom: '25px',
+            animation: 'fadeInUp 0.8s ease-out 0.2s backwards'
           }}>
-            موقعي لايف
+            <span style={{ display: 'block' }}>اربط موقعك مع</span>
+            <span style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}>سلة</span>
           </h1>
 
+          {/* Subtitle */}
           <p style={{
-            fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
-            opacity: 0.95,
-            marginBottom: '15px',
-            animation: 'fadeIn 0.6s ease-out 0.2s backwards'
-          }}>
-            اربط موقعك الخارجي مع متجرك في سلة
-          </p>
-
-          <p style={{
-            fontSize: '1.1rem',
-            opacity: 0.85,
-            marginBottom: '40px',
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+            color: 'rgba(255, 255, 255, 0.7)',
             maxWidth: '600px',
             margin: '0 auto 40px',
-            animation: 'fadeIn 0.6s ease-out 0.3s backwards'
+            lineHeight: '1.8',
+            animation: 'fadeInUp 0.8s ease-out 0.4s backwards'
           }}>
-            صمم موقعك على أي منصة تريدها، ونحن نربطه مع سلة لتحصل على تجربة تسوق متكاملة
+            صمم موقعك على أي منصة تحبها، ونحن نربطه بمتجرك في سلة.
+            <br />
+            تجربة تسوق متكاملة بتصميمك الخاص.
           </p>
 
           {/* Email Form */}
           {!submitted ? (
             <form onSubmit={handleSubmit} style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '15px',
-              maxWidth: '450px',
-              margin: '0 auto',
-              animation: 'fadeIn 0.6s ease-out 0.4s backwards'
+              animation: 'fadeInUp 0.8s ease-out 0.6s backwards'
             }}>
               <div style={{
                 display: 'flex',
-                gap: '10px',
+                gap: '12px',
+                justifyContent: 'center',
                 flexWrap: 'wrap',
-                justifyContent: 'center'
+                marginBottom: '20px'
               }}>
                 <input
                   type="email"
-                  placeholder="أدخل بريدك الإلكتروني"
+                  placeholder="بريدك الإلكتروني"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                   style={{
-                    padding: '16px 24px',
-                    borderRadius: '12px',
-                    border: 'none',
+                    padding: '18px 28px',
                     fontSize: '1rem',
-                    width: '280px',
+                    borderRadius: '16px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    color: 'white',
+                    width: '300px',
                     outline: 'none',
-                    fontFamily: 'inherit',
+                    backdropFilter: 'blur(10px)',
+                    transition: 'all 0.3s ease',
                     direction: 'rtl'
                   }}
-                  required
+                  onFocus={(e) => {
+                    e.target.style.borderColor = 'rgba(102, 126, 234, 0.5)';
+                    e.target.style.boxShadow = '0 0 30px rgba(102, 126, 234, 0.2)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.target.style.boxShadow = 'none';
+                  }}
                 />
                 <button
                   type="submit"
                   style={{
-                    padding: '16px 32px',
-                    borderRadius: '12px',
-                    border: 'none',
-                    background: '#1e293b',
-                    color: 'white',
+                    padding: '18px 40px',
                     fontSize: '1rem',
                     fontWeight: '600',
+                    borderRadius: '16px',
+                    border: 'none',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    color: 'white',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
-                    fontFamily: 'inherit'
+                    boxShadow: '0 10px 40px rgba(102, 126, 234, 0.3)'
+                  }}
+                  onMouseOver={(e) => {
+                    e.target.style.transform = 'translateY(-3px)';
+                    e.target.style.boxShadow = '0 20px 50px rgba(102, 126, 234, 0.4)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 10px 40px rgba(102, 126, 234, 0.3)';
                   }}
                 >
-                  انضم للقائمة
+                  انضم للقائمة ←
                 </button>
               </div>
-              <p style={{ fontSize: '0.9rem', opacity: 0.8 }}>
-                كن أول من يعرف عند الإطلاق
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>
+                +500 مسجل في قائمة الانتظار
               </p>
             </form>
           ) : (
             <div style={{
-              background: 'rgba(255, 255, 255, 0.2)',
-              padding: '30px',
-              borderRadius: '16px',
-              backdropFilter: 'blur(10px)',
-              animation: 'fadeIn 0.4s ease-out'
+              background: 'rgba(74, 222, 128, 0.1)',
+              border: '1px solid rgba(74, 222, 128, 0.3)',
+              padding: '30px 50px',
+              borderRadius: '20px',
+              animation: 'scaleIn 0.4s ease-out',
+              backdropFilter: 'blur(10px)'
             }}>
-              <div style={{ fontSize: '3rem', marginBottom: '15px' }}>✅</div>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '10px' }}>شكراً لك!</h3>
-              <p style={{ opacity: 0.9 }}>سنتواصل معك قريباً عند الإطلاق</p>
+              <div style={{ fontSize: '3rem', marginBottom: '15px' }}>🎉</div>
+              <h3 style={{ fontSize: '1.4rem', marginBottom: '10px', color: '#4ade80' }}>تم التسجيل بنجاح!</h3>
+              <p style={{ color: 'rgba(255,255,255,0.7)' }}>سنتواصل معك فور الإطلاق</p>
             </div>
           )}
 
-          {/* Coming Soon Badge */}
+          {/* Scroll Indicator */}
           <div style={{
-            marginTop: '50px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            background: 'rgba(255, 255, 255, 0.15)',
-            padding: '12px 24px',
-            borderRadius: '50px',
-            backdropFilter: 'blur(10px)',
-            animation: 'fadeIn 0.6s ease-out 0.5s backwards'
+            marginTop: '80px',
+            animation: 'bounce 2s infinite'
           }}>
-            <span style={{
-              width: '10px',
-              height: '10px',
-              background: '#4ade80',
-              borderRadius: '50%',
-              animation: 'pulse 2s ease-in-out infinite'
-            }} />
-            <span style={{ fontWeight: '500' }}>قريباً جداً...</span>
+            <div style={{
+              width: '30px',
+              height: '50px',
+              border: '2px solid rgba(255,255,255,0.3)',
+              borderRadius: '20px',
+              margin: '0 auto',
+              position: 'relative'
+            }}>
+              <div style={{
+                width: '4px',
+                height: '10px',
+                background: 'rgba(255,255,255,0.5)',
+                borderRadius: '2px',
+                position: 'absolute',
+                top: '8px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                animation: 'scrollDown 2s infinite'
+              }} />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
       <section style={{
-        padding: '80px 20px',
-        background: '#f8fafc'
+        padding: '100px 20px',
+        position: 'relative',
+        zIndex: 1
       }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          <h2 style={{
-            textAlign: 'center',
-            fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-            marginBottom: '50px',
-            color: '#1e293b'
-          }}>
-            لماذا موقعي لايف؟
-          </h2>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <h2 style={{
+              fontSize: 'clamp(2rem, 5vw, 3rem)',
+              fontWeight: '700',
+              marginBottom: '20px'
+            }}>
+              لماذا <span style={{
+                background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}>موقعي لايف</span>؟
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem' }}>
+              كل ما تحتاجه لربط موقعك بمتجرك في سلة
+            </p>
+          </div>
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '25px'
           }}>
             {features.map((feature, index) => (
               <div
                 key={index}
                 style={{
-                  background: 'white',
-                  padding: '30px',
-                  borderRadius: '16px',
-                  textAlign: 'center',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
-                  transition: 'all 0.3s ease'
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '24px',
+                  padding: '35px',
+                  transition: 'all 0.4s ease',
+                  cursor: 'default',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
+                  e.currentTarget.style.boxShadow = '0 25px 50px rgba(0,0,0,0.3)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
-                <div style={{ fontSize: '2.5rem', marginBottom: '15px' }}>
+                <div style={{
+                  width: '60px',
+                  height: '60px',
+                  background: feature.gradient,
+                  borderRadius: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '1.8rem',
+                  marginBottom: '20px'
+                }}>
                   {feature.icon}
                 </div>
                 <h3 style={{
-                  fontSize: '1.2rem',
-                  marginBottom: '10px',
-                  color: '#1e293b'
+                  fontSize: '1.3rem',
+                  fontWeight: '600',
+                  marginBottom: '12px'
                 }}>
                   {feature.title}
                 </h3>
                 <p style={{
-                  color: '#64748b',
-                  fontSize: '0.95rem',
+                  color: 'rgba(255,255,255,0.6)',
                   lineHeight: '1.7'
                 }}>
                   {feature.description}
@@ -253,32 +377,195 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How it Works Section */}
+      <section style={{
+        padding: '100px 20px',
+        position: 'relative',
+        zIndex: 1
+      }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <h2 style={{
+              fontSize: 'clamp(2rem, 5vw, 3rem)',
+              fontWeight: '700',
+              marginBottom: '20px'
+            }}>
+              كيف يعمل؟
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem' }}>
+              ثلاث خطوات بسيطة للبدء
+            </p>
+          </div>
+
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '30px'
+          }}>
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '30px',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '20px',
+                  padding: '30px 40px',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                }}
+              >
+                <div style={{
+                  fontSize: '3rem',
+                  fontWeight: '800',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  minWidth: '80px'
+                }}>
+                  {step.number}
+                </div>
+                <div>
+                  <h3 style={{ fontSize: '1.4rem', fontWeight: '600', marginBottom: '8px' }}>
+                    {step.title}
+                  </h3>
+                  <p style={{ color: 'rgba(255,255,255,0.6)' }}>
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section style={{
+        padding: '100px 20px',
+        position: 'relative',
+        zIndex: 1
+      }}>
+        <div style={{
+          maxWidth: '800px',
+          margin: '0 auto',
+          textAlign: 'center',
+          background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2))',
+          border: '1px solid rgba(102, 126, 234, 0.3)',
+          borderRadius: '32px',
+          padding: '60px 40px',
+          backdropFilter: 'blur(20px)'
+        }}>
+          <h2 style={{
+            fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+            fontWeight: '700',
+            marginBottom: '20px'
+          }}>
+            جاهز تبدأ؟
+          </h2>
+          <p style={{
+            color: 'rgba(255,255,255,0.7)',
+            fontSize: '1.1rem',
+            marginBottom: '30px'
+          }}>
+            انضم لقائمة الانتظار وكن أول من يجرب المنصة
+          </p>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            style={{
+              padding: '18px 50px',
+              fontSize: '1.1rem',
+              fontWeight: '600',
+              borderRadius: '16px',
+              border: 'none',
+              background: 'white',
+              color: '#667eea',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseOver={(e) => {
+              e.target.style.transform = 'scale(1.05)';
+              e.target.style.boxShadow = '0 20px 50px rgba(255,255,255,0.2)';
+            }}
+            onMouseOut={(e) => {
+              e.target.style.transform = 'scale(1)';
+              e.target.style.boxShadow = 'none';
+            }}
+          >
+            سجل الآن مجاناً
+          </button>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer style={{
-        background: '#1e293b',
-        color: 'white',
-        padding: '40px 20px',
-        textAlign: 'center'
+        padding: '50px 20px',
+        borderTop: '1px solid rgba(255,255,255,0.1)',
+        position: 'relative',
+        zIndex: 1
       }}>
-        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>
-            موقعي لايف
-          </h3>
-          <p style={{ opacity: 0.7, marginBottom: '20px' }}>
-            منصة ربط المواقع الخارجية مع سلة
-          </p>
-          <p style={{ opacity: 0.5, fontSize: '0.9rem' }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '20px'
+        }}>
+          <div>
+            <h3 style={{
+              fontSize: '1.5rem',
+              fontWeight: '700',
+              background: 'linear-gradient(135deg, #667eea, #764ba2)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              marginBottom: '8px'
+            }}>
+              موقعي لايف
+            </h3>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
+              منصة ربط المواقع مع سلة
+            </p>
+          </div>
+          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>
             © {new Date().getFullYear()} جميع الحقوق محفوظة
           </p>
         </div>
       </footer>
 
-      {/* Animations */}
+      {/* Global Styles */}
       <style jsx global>{`
-        @keyframes fadeIn {
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        html {
+          scroll-behavior: smooth;
+        }
+
+        body {
+          font-family: 'Readex Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        ::selection {
+          background: rgba(102, 126, 234, 0.5);
+        }
+
+        @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
           }
           to {
             opacity: 1;
@@ -286,13 +573,70 @@ export default function Home() {
           }
         }
 
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-30px) rotate(5deg);
+          }
+        }
+
         @keyframes pulse {
           0%, 100% {
             opacity: 1;
+            transform: scale(1);
           }
           50% {
-            opacity: 0.5;
+            opacity: 0.7;
+            transform: scale(1.1);
           }
+        }
+
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(10px);
+          }
+        }
+
+        @keyframes scrollDown {
+          0% {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+          }
+        }
+
+        input::placeholder {
+          color: rgba(255, 255, 255, 0.4);
         }
       `}</style>
     </div>
