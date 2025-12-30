@@ -22,72 +22,50 @@ export default function Home() {
     }
   };
 
-  const features = [
-    {
-      icon: '🔗',
-      title: 'ربط سهل وسريع',
-      description: 'اربط موقعك الخارجي مع سلة بضغطة زر واحدة',
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-    },
-    {
-      icon: '🛒',
-      title: 'سلة تسوق متكاملة',
-      description: 'المنتجات والأسعار والمخزون متزامنة تلقائياً',
-      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
-    },
-    {
-      icon: '🎫',
-      title: 'كوبونات وعروض',
-      description: 'كوبونات الخصم والعروض تعمل في موقعك مباشرة',
-      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
-    },
-    {
-      icon: '📊',
-      title: 'تحليلات متقدمة',
-      description: 'تتبع الزوار والمبيعات والتحويلات بالتفصيل',
-      gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
-    },
-    {
-      icon: '🔍',
-      title: 'تحسين السيو',
-      description: 'Meta tags وSchema markup تلقائي لكل منتج',
-      gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
-    },
-    {
-      icon: '💰',
-      title: 'التسويق بالعمولة',
-      description: 'روابط المسوقين تعمل وتُتبع في موقعك',
-      gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
-    },
-    {
-      icon: '🌐',
-      title: 'كل المنصات',
-      description: 'WordPress، Webflow، Wix، أو أي موقع مخصص',
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-    },
-    {
-      icon: '⚡',
-      title: 'تزامن فوري',
-      description: 'أي تغيير في سلة يظهر في موقعك خلال ثواني',
-      gradient: 'linear-gradient(135deg, #ff6b6b 0%, #feca57 100%)'
-    },
-    {
-      icon: '🔔',
-      title: 'إشعارات ذكية',
-      description: 'تنبيهات الطلبات والمخزون في الوقت الفعلي',
-      gradient: 'linear-gradient(135deg, #5f27cd 0%, #341f97 100%)'
-    }
+  const problems = [
+    { icon: '😩', text: 'تصمم موقع وتحتاج تدير منتجاتك من مكانين' },
+    { icon: '😤', text: 'صفحات الهبوط تكلفك وقت ومال' },
+    { icon: '😵', text: 'تحليلات مبعثرة بين أدوات مختلفة' },
+    { icon: '🤯', text: 'كل تغيير في المنتج تحدثه يدوياً' },
   ];
 
-  const steps = [
-    { number: '01', title: 'صمم موقعك', description: 'استخدم أي منصة تفضلها لبناء موقعك' },
-    { number: '02', title: 'اربط مع سلة', description: 'أضف كود الربط البسيط لموقعك' },
-    { number: '03', title: 'ابدأ البيع', description: 'استقبل الطلبات مباشرة في متجرك' }
+  const solutions = [
+    {
+      icon: '🎯',
+      title: 'إدارة واحدة من سلة',
+      description: 'غيّر السعر، أضف منتج، عدّل الوصف - كله من سلة وموقعك يتحدث تلقائياً',
+      highlight: 'صفر عمل إضافي'
+    },
+    {
+      icon: '🚀',
+      title: 'صفحة هبوط جاهزة',
+      description: 'ما تحتاج تصمم صفحة هبوط - نعطيك صفحة احترافية متزامنة مع متجرك',
+      highlight: 'وفّر آلاف الريالات'
+    },
+    {
+      icon: '🤖',
+      title: 'تحليلات ذكية بالـ AI',
+      description: 'تعرف أي منتج يبيع أكثر، أفضل وقت للعروض، وتوقعات المبيعات',
+      highlight: 'قرارات مبنية على بيانات'
+    },
+    {
+      icon: '🎨',
+      title: 'صمم بأي منصة',
+      description: 'Webflow، WordPress، Wix، Framer - أو حتى كود خاص. كلها تشتغل',
+      highlight: 'حرية كاملة'
+    },
+  ];
+
+  const comparisons = [
+    { feature: 'إدارة المنتجات', before: 'مكانين مختلفين', after: 'سلة فقط' },
+    { feature: 'تحديث الأسعار', before: 'يدوي في كل مكان', after: 'تلقائي فوري' },
+    { feature: 'صفحة الهبوط', before: 'تصميم + استضافة + صيانة', after: 'جاهزة ومجانية' },
+    { feature: 'التحليلات', before: 'Google Analytics + أدوات أخرى', after: 'AI يحللك كل شي' },
+    { feature: 'المخزون', before: 'تتابعه يدوياً', after: 'متزامن لحظياً' },
   ];
 
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', color: 'white', overflow: 'hidden' }}>
-
       {/* Animated Background */}
       <div style={{
         position: 'fixed',
@@ -141,18 +119,16 @@ export default function Home() {
         zIndex: 1
       }}>
         <div style={{ textAlign: 'center', maxWidth: '900px' }}>
-
           {/* Badge */}
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
+            background: 'rgba(74, 222, 128, 0.1)',
+            border: '1px solid rgba(74, 222, 128, 0.3)',
             padding: '8px 20px',
             borderRadius: '50px',
             marginBottom: '30px',
-            backdropFilter: 'blur(10px)',
             animation: 'fadeInDown 0.8s ease-out'
           }}>
             <span style={{
@@ -162,39 +138,61 @@ export default function Home() {
               borderRadius: '50%',
               animation: 'pulse 2s infinite'
             }} />
-            <span style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)' }}>قريباً - سجل الآن للوصول المبكر</span>
+            <span style={{ fontSize: '0.9rem', color: '#4ade80' }}>متجرك في سلة + موقعك المخصص = 🔥</span>
           </div>
 
           {/* Main Title */}
           <h1 style={{
-            fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+            fontSize: 'clamp(2rem, 7vw, 4rem)',
             fontWeight: '800',
-            lineHeight: '1.1',
+            lineHeight: '1.2',
             marginBottom: '25px',
             animation: 'fadeInUp 0.8s ease-out 0.2s backwards'
           }}>
-            <span style={{ display: 'block' }}>اربط موقعك مع</span>
+            <span style={{ display: 'block', color: 'rgba(255,255,255,0.9)' }}>موقعك الخارجي</span>
             <span style={{
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'
-            }}>سلة</span>
+            }}>يُدار من سلة</span>
           </h1>
 
           {/* Subtitle */}
           <p style={{
-            fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
             color: 'rgba(255, 255, 255, 0.7)',
-            maxWidth: '600px',
-            margin: '0 auto 40px',
+            maxWidth: '700px',
+            margin: '0 auto 20px',
             lineHeight: '1.8',
             animation: 'fadeInUp 0.8s ease-out 0.4s backwards'
           }}>
-            صمم موقعك على أي منصة تحبها، ونحن نربطه بمتجرك في سلة.
+            صمم موقعك بأي منصة تحبها.
             <br />
-            تجربة تسوق متكاملة بتصميمك الخاص.
+            <strong style={{ color: 'white' }}>كل شي ثاني علينا:</strong> المنتجات، الأسعار، المخزون، الطلبات - كلها من سلة
           </p>
+
+          {/* Key Points */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '20px',
+            flexWrap: 'wrap',
+            marginBottom: '40px',
+            animation: 'fadeInUp 0.8s ease-out 0.5s backwards'
+          }}>
+            {['تزامن فوري', 'تحليلات AI', 'صفحة هبوط مجانية'].map((point, i) => (
+              <div key={i} style={{
+                background: 'rgba(255,255,255,0.05)',
+                padding: '10px 20px',
+                borderRadius: '30px',
+                fontSize: '0.95rem',
+                border: '1px solid rgba(255,255,255,0.1)'
+              }}>
+                ✓ {point}
+              </div>
+            ))}
+          </div>
 
           {/* Email Form */}
           {!submitted ? (
@@ -259,11 +257,11 @@ export default function Home() {
                     e.target.style.boxShadow = '0 10px 40px rgba(102, 126, 234, 0.3)';
                   }}
                 >
-                  انضم للقائمة ←
+                  أبي أجرب! 🚀
                 </button>
               </div>
               <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>
-                +500 مسجل في قائمة الانتظار
+                انضم لـ +500 تاجر في قائمة الانتظار
               </p>
             </form>
           ) : (
@@ -276,70 +274,88 @@ export default function Home() {
               backdropFilter: 'blur(10px)'
             }}>
               <div style={{ fontSize: '3rem', marginBottom: '15px' }}>🎉</div>
-              <h3 style={{ fontSize: '1.4rem', marginBottom: '10px', color: '#4ade80' }}>تم التسجيل بنجاح!</h3>
-              <p style={{ color: 'rgba(255,255,255,0.7)' }}>سنتواصل معك فور الإطلاق</p>
+              <h3 style={{ fontSize: '1.4rem', marginBottom: '10px', color: '#4ade80' }}>تم التسجيل!</h3>
+              <p style={{ color: 'rgba(255,255,255,0.7)' }}>بنتواصل معك قريب جداً</p>
             </div>
           )}
+        </div>
+      </section>
 
-          {/* Scroll Indicator */}
-          <div style={{
-            marginTop: '80px',
-            animation: 'bounce 2s infinite'
+      {/* Problem Section */}
+      <section style={{
+        padding: '80px 20px',
+        position: 'relative',
+        zIndex: 1,
+        background: 'rgba(255,255,255,0.02)'
+      }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <h2 style={{
+            textAlign: 'center',
+            fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+            marginBottom: '50px'
           }}>
-            <div style={{
-              width: '30px',
-              height: '50px',
-              border: '2px solid rgba(255,255,255,0.3)',
-              borderRadius: '20px',
-              margin: '0 auto',
-              position: 'relative'
-            }}>
-              <div style={{
-                width: '4px',
-                height: '10px',
-                background: 'rgba(255,255,255,0.5)',
-                borderRadius: '2px',
-                position: 'absolute',
-                top: '8px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                animation: 'scrollDown 2s infinite'
-              }} />
-            </div>
+            😫 المشكلة اللي كلنا نعاني منها
+          </h2>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '20px'
+          }}>
+            {problems.map((problem, index) => (
+              <div
+                key={index}
+                style={{
+                  background: 'rgba(255, 100, 100, 0.05)',
+                  border: '1px solid rgba(255, 100, 100, 0.2)',
+                  borderRadius: '16px',
+                  padding: '25px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '15px'
+                }}
+              >
+                <span style={{ fontSize: '2rem' }}>{problem.icon}</span>
+                <span style={{ color: 'rgba(255,255,255,0.8)' }}>{problem.text}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Solution Section */}
       <section style={{
         padding: '100px 20px',
         position: 'relative',
         zIndex: 1
       }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <h2 style={{
-              fontSize: 'clamp(2rem, 5vw, 3rem)',
-              fontWeight: '700',
-              marginBottom: '20px'
-            }}>
-              لماذا <span style={{
-                background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>موقعي لايف</span>؟
-            </h2>
-            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem' }}>
-              كل ما تحتاجه لربط موقعك بمتجرك في سلة
-            </p>
-          </div>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          <h2 style={{
+            textAlign: 'center',
+            fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+            marginBottom: '20px'
+          }}>
+            ✨ الحل؟ <span style={{
+              background: 'linear-gradient(135deg, #667eea, #764ba2)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}>موقعي لايف</span>
+          </h2>
+          <p style={{
+            textAlign: 'center',
+            color: 'rgba(255,255,255,0.6)',
+            marginBottom: '60px',
+            fontSize: '1.1rem'
+          }}>
+            ركز على التصميم. الباقي علينا.
+          </p>
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '20px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '25px'
           }}>
-            {features.map((feature, index) => (
+            {solutions.map((solution, index) => (
               <div
                 key={index}
                 style={{
@@ -348,7 +364,6 @@ export default function Home() {
                   borderRadius: '24px',
                   padding: '35px',
                   transition: 'all 0.4s ease',
-                  cursor: 'default',
                   position: 'relative',
                   overflow: 'hidden'
                 }}
@@ -363,102 +378,135 @@ export default function Home() {
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
-                <div style={{
-                  width: '60px',
-                  height: '60px',
-                  background: feature.gradient,
-                  borderRadius: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.8rem',
-                  marginBottom: '20px'
-                }}>
-                  {feature.icon}
-                </div>
-                <h3 style={{
-                  fontSize: '1.3rem',
-                  fontWeight: '600',
-                  marginBottom: '12px'
-                }}>
-                  {feature.title}
+                <div style={{ fontSize: '3rem', marginBottom: '20px' }}>{solution.icon}</div>
+                <h3 style={{ fontSize: '1.4rem', fontWeight: '600', marginBottom: '12px' }}>
+                  {solution.title}
                 </h3>
-                <p style={{
-                  color: 'rgba(255,255,255,0.6)',
-                  lineHeight: '1.7'
-                }}>
-                  {feature.description}
+                <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: '1.8', marginBottom: '20px' }}>
+                  {solution.description}
                 </p>
+                <div style={{
+                  background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2))',
+                  padding: '10px 15px',
+                  borderRadius: '10px',
+                  fontSize: '0.9rem',
+                  color: '#a78bfa',
+                  display: 'inline-block'
+                }}>
+                  {solution.highlight}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How it Works Section */}
+      {/* Comparison Section */}
+      <section style={{
+        padding: '100px 20px',
+        position: 'relative',
+        zIndex: 1,
+        background: 'rgba(255,255,255,0.02)'
+      }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h2 style={{
+            textAlign: 'center',
+            fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+            marginBottom: '60px'
+          }}>
+            قبل وبعد 🔄
+          </h2>
+
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.03)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: '24px',
+            overflow: 'hidden'
+          }}>
+            {/* Header */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr 1fr',
+              background: 'rgba(255,255,255,0.05)',
+              padding: '20px',
+              fontWeight: '600'
+            }}>
+              <span></span>
+              <span style={{ color: '#f87171', textAlign: 'center' }}>❌ قبل</span>
+              <span style={{ color: '#4ade80', textAlign: 'center' }}>✅ بعد</span>
+            </div>
+
+            {/* Rows */}
+            {comparisons.map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr 1fr',
+                  padding: '20px',
+                  borderTop: '1px solid rgba(255,255,255,0.05)',
+                  alignItems: 'center'
+                }}
+              >
+                <span style={{ fontWeight: '500' }}>{item.feature}</span>
+                <span style={{ color: 'rgba(255,255,255,0.5)', textAlign: 'center', fontSize: '0.9rem' }}>{item.before}</span>
+                <span style={{ color: '#4ade80', textAlign: 'center', fontSize: '0.9rem' }}>{item.after}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it Works */}
       <section style={{
         padding: '100px 20px',
         position: 'relative',
         zIndex: 1
       }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <h2 style={{
-              fontSize: 'clamp(2rem, 5vw, 3rem)',
-              fontWeight: '700',
-              marginBottom: '20px'
-            }}>
-              كيف يعمل؟
-            </h2>
-            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem' }}>
-              ثلاث خطوات بسيطة للبدء
-            </p>
-          </div>
-
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '30px'
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <h2 style={{
+            textAlign: 'center',
+            fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+            marginBottom: '60px'
           }}>
-            {steps.map((step, index) => (
+            كيف يشتغل؟ ⚡
+          </h2>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+            {[
+              { num: '1', title: 'صمم موقعك', desc: 'استخدم Webflow، WordPress، Wix، أو أي منصة. أنت الفنان!' },
+              { num: '2', title: 'اربط مع سلة', desc: 'نسخ + لصق كود واحد بس. ما يحتاج مبرمج.' },
+              { num: '3', title: 'استرخ وبيع', desc: 'كل تغيير في سلة → يظهر في موقعك. تلقائي 100%' },
+            ].map((step, index) => (
               <div
                 key={index}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '30px',
+                  gap: '25px',
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                   borderRadius: '20px',
-                  padding: '30px 40px',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                  padding: '30px',
                 }}
               >
                 <div style={{
-                  fontSize: '3rem',
-                  fontWeight: '800',
+                  width: '60px',
+                  height: '60px',
                   background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  minWidth: '80px'
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '1.5rem',
+                  fontWeight: '700',
+                  flexShrink: 0
                 }}>
-                  {step.number}
+                  {step.num}
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: '600', marginBottom: '8px' }}>
-                    {step.title}
-                  </h3>
-                  <p style={{ color: 'rgba(255,255,255,0.6)' }}>
-                    {step.description}
-                  </p>
+                  <h3 style={{ fontSize: '1.3rem', marginBottom: '8px' }}>{step.title}</h3>
+                  <p style={{ color: 'rgba(255,255,255,0.6)' }}>{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -473,7 +521,7 @@ export default function Home() {
         zIndex: 1
       }}>
         <div style={{
-          maxWidth: '800px',
+          maxWidth: '700px',
           margin: '0 auto',
           textAlign: 'center',
           background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2))',
@@ -483,18 +531,18 @@ export default function Home() {
           backdropFilter: 'blur(20px)'
         }}>
           <h2 style={{
-            fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+            fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
             fontWeight: '700',
             marginBottom: '20px'
           }}>
-            جاهز تبدأ؟
+            خلك من أوائل المستخدمين 🚀
           </h2>
           <p style={{
             color: 'rgba(255,255,255,0.7)',
             fontSize: '1.1rem',
             marginBottom: '30px'
           }}>
-            انضم لقائمة الانتظار وكن أول من يجرب المنصة
+            سجل الآن واحصل على وصول مبكر + خصم خاص للمؤسسين
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -518,7 +566,7 @@ export default function Home() {
               e.target.style.boxShadow = 'none';
             }}
           >
-            سجل الآن مجاناً
+            سجلني الآن! 🎯
           </button>
         </div>
       </section>
@@ -551,7 +599,7 @@ export default function Home() {
               موقعي لايف
             </h3>
             <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
-              منصة ربط المواقع مع سلة
+              موقعك الخارجي يُدار من سلة
             </p>
           </div>
           <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>
@@ -630,26 +678,6 @@ export default function Home() {
           50% {
             opacity: 0.7;
             transform: scale(1.1);
-          }
-        }
-
-        @keyframes bounce {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(10px);
-          }
-        }
-
-        @keyframes scrollDown {
-          0% {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-          }
-          100% {
-            opacity: 0;
-            transform: translateX(-50%) translateY(20px);
           }
         }
 
