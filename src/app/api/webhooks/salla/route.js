@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { createHmac } from 'crypto';
 import { saveStoreTokens } from '@/lib/salla';
 
 /**
@@ -7,7 +8,22 @@ import { saveStoreTokens } from '@/lib/salla';
  */
 export async function POST(request) {
   try {
-    const body = await request.json();
+    // التحقق من صحة الـ Signature
+    const signature = request.headers.get('x-salla-signature');
+    const rawBody = await request.text();
+
+    if (signature && process.env.SALLA_WEBHOOK_SECRET) {
+      const expectedSignature = createHmac('sha256', process.env.SALLA_WEBHOOK_SECRET)
+        .update(rawBody)
+        .digest('hex');
+
+      if (signature !== expectedSignature) {
+        console.error('❌ Invalid webhook signature');
+        return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+      }
+    }
+
+    const body = JSON.parse(rawBody);
     const event = body.event;
     const data = body.data;
 
@@ -74,7 +90,7 @@ async function handleStoreAuthorize(data) {
   console.log('🔐 Store authorized:', merchant);
 
   // حفظ التوكنات
-  saveStoreTokens(merchant.toString(), {
+  await saveStoreTokens(merchant.toString(), {
     access_token,
     refresh_token,
     expires_in,
