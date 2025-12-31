@@ -258,6 +258,49 @@ export async function calculateCart(merchantId, items, couponCode = null) {
 }
 
 // ============================================
+// Checkout - الدفع (Headless)
+// ============================================
+
+/**
+ * إنشاء رابط دفع مباشر
+ * يرسل العميل لصفحة الدفع في سلة
+ */
+export async function createCheckout(merchantId, checkoutData) {
+  // إنشاء السلة أولاً
+  const cartResult = await sallaRequest(merchantId, '/carts', {
+    method: 'POST',
+    body: JSON.stringify({
+      items: checkoutData.items.map(item => ({
+        product_id: item.product_id,
+        quantity: item.quantity,
+      })),
+    }),
+  });
+
+  return cartResult;
+}
+
+/**
+ * الحصول على رابط الدفع المباشر من المنتج
+ */
+export function getProductCheckoutUrl(product, quantity = 1) {
+  // رابط الإضافة للسلة في سلة مباشرة
+  if (product.urls?.customer) {
+    return `${product.urls.customer}?add-to-cart=${product.id}&quantity=${quantity}`;
+  }
+  return null;
+}
+
+/**
+ * بناء رابط checkout لعدة منتجات
+ */
+export function buildCheckoutUrl(storeUrl, items) {
+  // بناء رابط السلة مع المنتجات
+  const params = items.map(item => `cart[${item.product_id}]=${item.quantity}`).join('&');
+  return `https://${storeUrl}/cart?${params}`;
+}
+
+// ============================================
 // Wishlist - المفضلة
 // ============================================
 
