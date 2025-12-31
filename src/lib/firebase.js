@@ -114,6 +114,49 @@ export async function updateStoreInfo(merchantId, storeInfo) {
   });
 }
 
+/**
+ * حفظ بيانات التاجر الكاملة
+ */
+export async function saveMerchantInfo(merchantId, merchantData) {
+  const db = getDb();
+
+  await db.collection('merchants').doc(merchantId).set({
+    merchantId,
+    email: merchantData.email || null,
+    name: merchantData.name || null,
+    mobile: merchantData.mobile || null,
+    storeName: merchantData.storeName || null,
+    storeUrl: merchantData.storeUrl || null,
+    plan: merchantData.plan || 'free',
+    status: 'active',
+    installedAt: Date.now(),
+    updatedAt: Date.now(),
+  }, { merge: true });
+
+  console.log('✅ Merchant info saved:', merchantId);
+}
+
+/**
+ * جلب بيانات التاجر
+ */
+export async function getMerchantInfo(merchantId) {
+  const db = getDb();
+  const doc = await db.collection('merchants').doc(merchantId).get();
+  if (!doc.exists) return null;
+  return doc.data();
+}
+
+/**
+ * جلب كل التجار
+ */
+export async function getAllMerchants() {
+  const db = getDb();
+  const snapshot = await db.collection('merchants').get();
+  const merchants = [];
+  snapshot.forEach(doc => merchants.push(doc.data()));
+  return merchants;
+}
+
 // ============================================
 // Subscribers Operations (للنشرة البريدية)
 // ============================================

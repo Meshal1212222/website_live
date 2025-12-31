@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createHmac } from 'crypto';
-import { saveStoreTokens } from '@/lib/salla';
+import { saveStoreTokens, getStoreInfo } from '@/lib/salla';
+import { saveMerchantInfo } from '@/lib/firebase';
+import { sendWelcomeEmail } from '@/lib/email';
 
 /**
  * Salla Webhook Handler
@@ -60,12 +62,12 @@ export async function POST(request) {
 
       // تثبيت التطبيق
       case 'app.installed':
-        console.log('✅ App installed for merchant:', data.merchant);
+        await handleAppInstalled(body);
         break;
 
       // إلغاء تثبيت التطبيق
       case 'app.uninstalled':
-        console.log('❌ App uninstalled for merchant:', data.merchant);
+        await handleAppUninstalled(body);
         break;
 
       default:
@@ -123,6 +125,57 @@ async function handleStoreAuthorize(body) {
   });
 
   console.log('✅ Tokens saved for merchant:', merchantId);
+
+  // جلب معلومات المتجر وإرسال إيميل ترحيب
+  try {
+    const storeInfo = await getStoreInfo(merchantId.toString());
+
+    if (storeInfo?.data) {
+      const store = storeInfo.data;
+
+      // حفظ بيانات التاجر
+      await saveMerchantInfo(merchantId.toString(), {
+        email: store.email,
+        name: store.name,
+        mobile: store.mobile,
+        storeName: store.name,
+        storeUrl: store.domain,
+      });
+
+      // إرسال إيميل ترحيب
+      if (store.email) {
+        await sendWelcomeEmail({
+          email: store.email,
+          name: store.name,
+          storeName: store.name,
+          merchantId: merchantId.toString(),
+        });
+        console.log('📧 Welcome email sent to:', store.email);
+      }
+    }
+  } catch (error) {
+    console.error('⚠️ Could not fetch store info or send email:', error.message);
+  }
+}
+
+/**
+ * معالجة تثبيت التطبيق
+ */
+async function handleAppInstalled(body) {
+  const merchantId = body.merchant?.id || body.data?.merchant?.id || body.merchant;
+  console.log('✅ App installed for merchant:', merchantId);
+
+  // يمكن إضافة logic إضافي هنا
+}
+
+/**
+ * معالجة إلغاء تثبيت التطبيق
+ */
+async function handleAppUninstalled(body) {
+  const merchantId = body.merchant?.id || body.data?.merchant?.id || body.merchant;
+  console.log('❌ App uninstalled for merchant:', merchantId);
+
+  // يمكن إضافة logic لتحديث حالة التاجر
 }
 
 /**
